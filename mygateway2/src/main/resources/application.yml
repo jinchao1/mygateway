@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: w1
+        predicates:
+          - Path=/w/**
+          # weight里的两个参数
+          - weight=service,5
+          uri: lb://MDB5
+        filters:  
+        - StripPrefix=1
+      - id: w2
+        predicates:
+          - Path=/w/**
+          # weight里的两个参数
+          - weight=service,95
+          uri: lb://MDB5
+        filters:
+        - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+  application:
+    name: gateway
+server:
+  port: 80
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
