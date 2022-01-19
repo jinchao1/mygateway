@@ -5,7 +5,7 @@ spring:
       - id: w1
         predicates:
           - Path=/w/**
-          # weight里的两个参数
+          # weight里的两个参数：service-分组标识  5-权重 5%
           - weight=service,5
           uri: lb://MDB5
         filters:  
@@ -15,7 +15,7 @@ spring:
           - Path=/w/**
           # weight里的两个参数
           - weight=service,95
-          uri: lb://MDB5
+          uri: lb://MDB95
         filters:
         - StripPrefix=1
       discovery:
